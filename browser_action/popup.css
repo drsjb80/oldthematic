@@ -1,0 +1,31 @@
+html, body {
+  width: auto;
+  background-color: #FFFFFF;
+  overflow-x: hidden;
+  max-height: 105%;
+}
+
+.button {
+  text-align: left;
+  vertical-align: middle;
+  font-size: 1em;
+  cursor: pointer;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  padding-bottom: 0.2em;
+  padding-top: 0.2em;
+}
+
+.theme:hover {
+	background-color: #EEEEEE;
+}
+
+.theme{
+	border: none;
+    background-color: #FFFFFF;
+}
+
+.menu-separator{
+  border-top: 1px solid lightgrey;
+	border-bottom: 1px solid white;
+}
