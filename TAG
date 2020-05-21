@@ -1,0 +1,12 @@
+#! /bin/bash
+
+version=`grep '"version":' manifest.json | \
+    sed -e 's/"[:space:]*$//' -e 's/.*"//'`
+command="git tag -a v${version} -m \"version ${version}\""
+
+echo -n "Execute ${command}? "
+read
+if [[ ${REPLY} == "Y" || ${REPLY} == "y" ]]
+then
+    eval ${command}
+fi
