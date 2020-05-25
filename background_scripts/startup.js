@@ -46,7 +46,6 @@ function loadDefaultPrefs()
     preferences.debug = false;
     preferences.fastSwitch = false;
     preferences.autoMinutes = 30;
-    preferences.previewDelay = 100;
     preferences.current = 0;
     preferences.currentThemeId = null;
     preferences.defaults_loaded = true; 
@@ -102,8 +101,8 @@ browser.menus.onClicked.addListener((info) =>
 
 browser.commands.onCommand.addListener(function(command) 
 {
-    switch (command) 
-    {
+    logger.log(command);
+    switch (command) {
         case "switch_to_default":
             activateDefaultTheme();
             break;
@@ -111,14 +110,13 @@ browser.commands.onCommand.addListener(function(command)
             rotate();
             break;
         case "toggle_autoswitch":
-            var getAutoPref = browser.storage.local.get("auto");
-            getAutoPref.then((pref) => 
-                {
-                    browser.storage.local.set({'auto': !pref.auto})
-                        .catch(handleError);
-                    logger.log(`Auto: ${!pref.auto}`);
-                }
-            );
+            browser.storage.local.get("auto").then((pref) => {
+                browser.storage.local.set({'auto': !pref.auto})
+                    .catch(handleError);
+                logger.log(`Auto: ${!pref.auto}`);
+                // give visual feedback
+                if(pref.auto) rotate();
+            });
             break;
         default:
             // should never get here

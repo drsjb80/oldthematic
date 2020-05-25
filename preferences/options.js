@@ -2,8 +2,7 @@
 
 
 var preferences = ["auto", "autoMinutes", "random", "startupSwitch", "preview",
-                    "previewDelay", "iconPreview", "toolsMenu", "debug", 
-                    "fastSwitch"];
+                    "iconPreview", "toolsMenu", "debug", "fastSwitch"];
 
 
 var autoObject = document.querySelector("#auto");
@@ -11,7 +10,6 @@ var autoMinutesObject = document.querySelector("#auto-minutes");
 var randomObject = document.querySelector("#random");
 var startupSwitchObject = document.querySelector("#startup-switch");
 var previewObject = document.querySelector("#preview");
-var previewDelayObject = document.querySelector("#preview-delay");
 var iconPreviewObject = document.querySelector("#icon-preview");
 var toolsMenuObject = document.querySelector("#tools-menu");
 var debugObject = document.querySelector("#debug");
@@ -27,7 +25,6 @@ function saveOptions(e)
             random: randomObject.checked,
             startupSwitch: startupSwitchObject.checked,
             preview: previewObject.checked,
-            previewDelay: parseInt(previewDelayObject.value),
             // iconPreview: iconPreviewObject.checked,
             toolsMenu: toolsMenuObject.checked,
             debug: debugObject.checked,
@@ -45,7 +42,6 @@ function loadOptions()
         randomObject.checked = prefs.random;
         startupSwitchObject.checked = prefs.startupSwitch;
         previewObject.checked = prefs.preview;
-        previewDelayObject.value = prefs.previewDelay;
         // iconPreviewObject.checked = prefs.iconPreview;
         toolsMenuObject.checked = prefs.toolsMenu;
         debugObject.checked = prefs.debug;

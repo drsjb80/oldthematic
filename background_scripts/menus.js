@@ -7,7 +7,7 @@ var loadedThemes;
 
 function getMenuData() 
 {
-    var menuPreferences = ["iconPreview", "preview", "previewDelay", "current",
+    var menuPreferences = ["iconPreview", "preview", "current",
                             "currentThemeId"];
     var getData = Promise.all([
         browser.storage.local.get(menuPreferences),
@@ -80,7 +80,7 @@ function buildMenuItem(theme, prefs, theIndex)
     if (true === prefs.preview) 
     {
         themeChoice.addEventListener('mouseenter',
-                        mouseEnterListener(theme, prefs.previewDelay));
+                        mouseEnterListener(theme, prefs.preview));
         themeChoice.addEventListener('mouseleave',
                         mouseLeaveListener('button theme', prefs.preview));
     }

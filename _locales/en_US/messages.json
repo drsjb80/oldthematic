@@ -75,13 +75,9 @@
         "description": "Title of the options menu pane",
         "message": "Thematic preferences"
     },
-    "options_previewDelay_desc": {
-        "description": "Text displayed in the options pane",
-        "message": "(ms) delay, values between 100 and 10000."
-    },
     "options_preview_desc": {
         "description": "Text displayed in the options pane",
-        "message": "Preview themes on menu selection with"
+        "message": "Preview themes on menu selection."
     },
     "options_random_desc": {
         "description": "Text displayed in the options pane",

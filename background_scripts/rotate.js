@@ -69,7 +69,7 @@ function autoRotate()
 
 function rotate() 
 {
-    if (1 >= currentThemes.length) return;
+    if (1 > currentThemes.length) return;
 
     var getRotatePref = browser.storage.local.get(["random", "current"]);
     getRotatePref.then((prefs) => 

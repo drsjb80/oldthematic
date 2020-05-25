@@ -27,8 +27,7 @@ function reactToPrefChange(prefName, prefData)
             // of icons to the menu 
             // toggleMenuIcons(prefData.newValue);
             break;
-        case 'preview': // falls through to previewDelay
-        case 'previewDelay':
+        case 'preview':
             getMenuData().then(buildBrowserActionMenu, handleError);
             break;
         case 'debug':
