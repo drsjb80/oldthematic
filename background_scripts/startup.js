@@ -103,13 +103,13 @@ browser.commands.onCommand.addListener(function(command)
 {
     logger.log(command);
     switch (command) {
-        case "switch_to_default":
+        case "Switch to default theme":
             activateDefaultTheme();
             break;
-        case "rotate":
+        case "Rotate to next theme":
             rotate();
             break;
-        case "toggle_autoswitch":
+        case "Toggle autoswitching":
             browser.storage.local.get("auto").then((pref) => {
                 browser.storage.local.set({'auto': !pref.auto})
                     .catch(handleError);

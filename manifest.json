@@ -26,24 +26,22 @@
         "default_title": "Thematic"
     },
     "commands": {
-        "_execute_browser_action": {
-            "suggested_key": {
-                "default": "Alt+Shift+P"
-            }
-        },
-        "switch_to_default" : {
+        "Switch to default theme" : {
            "suggested_key": {
-                "default": "Alt+Shift+D"
+                "default": "Alt+Ctrl+D",
+                "mac": "Alt+MacCtrl+D"
             } 
         },
-        "rotate" : {
+        "Rotate to next theme" : {
            "suggested_key": {
-                "default": "Alt+Shift+R"
+                "default": "Alt+Ctrl+S",
+                "mac": "Alt+MacCtrl+S"
             } 
         },
-        "toggle_autoswitch" : {
+        "Toggle autoswitching" : {
            "suggested_key": {
-                "default": "Alt+Shift+A"
+                "default": "Alt+Ctrl+A",
+                "mac": "Alt+MacCtrl+S"
             } 
         }
 
