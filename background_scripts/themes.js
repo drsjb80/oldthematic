@@ -88,13 +88,7 @@ function getDefaultThemeIndex() {
 }
 
 function sortThemes(addonInfos) {
-    currentThemes = [];
-    for(let info of addonInfos) {
-        if("theme" === info.type) {
-            logger.log(info.name, info.id);
-            currentThemes.push(info);            
-        }
-    }
+    currentThemes = addonInfos.filter(info => "theme" === info.type);
 
     logger.log (`Themes found ${currentThemes.length}`);
 
@@ -109,6 +103,7 @@ function sortThemes(addonInfos) {
 // (IE sortThemes has been called previously)
 function validateCurrentIndex(current, currentThemeId) 
 {
+
     logger.log(current);
     logger.log(currentThemeId);
     // On first run, the currentThemeId will be null. The current index skips
@@ -128,6 +123,7 @@ function validateCurrentIndex(current, currentThemeId)
     let themesToCheck;
     let themeIndex;
     logger.log(`User themes ${currentThemes.length}, Current index ${current}`);
+
     if(currentThemes.length < current) {
         themesToCheck = defaultThemes;
         themeIndex = current - (currentThemes.length + 1);
@@ -147,69 +143,47 @@ function validateCurrentIndex(current, currentThemeId)
 }
 
 function findActiveTheme() {
-    for(let index = 0; index < currentThemes.length; index++) {
-        if(true === currentThemes[index].enabled) {            
-            updateCurrentIndex(index);
-            logger.log(index);
-            return index;
-        }
+    let index;
+
+    index = currentThemes.map(theme => theme.enabled).indexOf(true);
+    logger.log(index);
+
+    if(-1 !== index) {
+        updateCurrentIndex(index);
+        return index;
     }
 
-    for(let index = 0; index < defaultThemes.length; index++) {
-        if(true === defaultThemes[index].enabled) {
-            index = index + currentThemes.length + 1;
-            updateCurrentIndex(index);
-            logger.log(index);
-            return index;
-        }
+    index = defaultThemes.map(theme => theme.enabled).indexOf(true);
+    logger.log(index);
+
+    if(-1 !== index) {
+        index = index + currentThemes.length + 1;
+        updateCurrentIndex(index);
+        return index;
     }
+
     logger.log(false);
     return false;
 }
 
 function extractDefaultThemes() {
-    defaultThemes = [];
-    var numDefaultsFound = 0;
-    var defaultNotFound = true;
-    var theme;
-    logger.log("Segregating default themes");
+    logger.log("Separating default themes");
 
-    // We do not want to iterate over more of the array than we have to. So we
-    // break out once we have found all the pre-installed default themes.
-    for(let index = 0; index < currentThemes.length; index++) {
-        theme = currentThemes[index];
-        if(isDefaultTheme(theme.id)) {
-            logger.log(`${theme.name} ${theme.id}`);
-            numDefaultsFound += 1;
-            defaultThemes.push(theme);
-            currentThemes.splice(index, 1);
-            index -= 1;
-
-            if(defaultNotFound) {
-                defaultNotFound =
-                    (SAME !== theme.id.localeCompare("{972ce4c6-7e08-4474-a285-3208198ce6fd}") &&
-                     SAME !== theme.id.localeCompare("default-theme@mozilla.org"));
-            }
-
-            if(NUM_DEFAULT_THEMES == numDefaultsFound) {
-                break;
-            }
-        }
-    }
-
-    if(defaultNotFound) {
-        defaultThemes.push(defaultTheme);
-    }
+    defaultThemes = currentThemes.filter(isDefaultTheme);
+    currentThemes = currentThemes.filter(theme => ! isDefaultTheme(theme));
 }
 
-function isDefaultTheme(themeId)
+function isDefaultTheme(theme)
 {
-    return ["firefox-compact-dark@mozilla.org@personas.mozilla.org",
-    "firefox-compact-light@mozilla.org@personas.mozilla.org",
-    "firefox-compact-dark@mozilla.org",
-    "firefox-compact-light@mozilla.org",
-    "default-theme@mozilla.org",
-    "{972ce4c6-7e08-4474-a285-3208198ce6fd}"].includes(themeId);
+    return([
+        "firefox-compact-dark@mozilla.org@personas.mozilla.org",
+        "firefox-compact-light@mozilla.org@personas.mozilla.org",
+        "firefox-compact-dark@mozilla.org",
+        "firefox-compact-light@mozilla.org",
+        "default-theme@mozilla.org",
+        "firefox-alpenglow@mozilla.org",
+        "{972ce4c6-7e08-4474-a285-3208198ce6fd}"
+    ].includes(theme.id));
 }
 
 function toolsMenuThemeSelect(index)

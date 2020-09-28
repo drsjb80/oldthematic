@@ -28,20 +28,17 @@
     "commands": {
         "Switch to default theme" : {
            "suggested_key": {
-                "default": "Alt+Ctrl+D",
-                "mac": "Alt+MacCtrl+D"
+                "default": "Alt+Shift+D"
             } 
         },
         "Rotate to next theme" : {
            "suggested_key": {
-                "default": "Alt+Ctrl+S",
-                "mac": "Alt+MacCtrl+S"
+                "default": "Alt+Shift+R"
             } 
         },
         "Toggle autoswitching" : {
            "suggested_key": {
-                "default": "Alt+Ctrl+A",
-                "mac": "Alt+MacCtrl+S"
+                "default": "Alt+Shift+A"
             } 
         }
 

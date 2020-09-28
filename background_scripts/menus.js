@@ -23,9 +23,13 @@ function buildBrowserActionMenu(data)
     logger.log("Start building BAMenu");
 
     sortThemes(themes);
+
+    // check to make sure the persistant value is good.
     prefs.current = validateCurrentIndex(prefs.current, prefs.currentThemeId);
+
     browserActionMenu = document.createElement("div");
     browserActionMenu.setAttribute("class", "menu");
+
     for (let index = 0; index < currentThemes.length; index++) 
     {        
         browserActionMenu.
@@ -55,10 +59,11 @@ function buildBrowserActionMenu(data)
 
 function buildMenuItem(theme, prefs, theIndex) 
 {
-    var themeChoice = document.createElement("option");
+    let themeChoice = document.createElement("option");
     themeChoice.setAttribute("class", "button theme");
     themeChoice.setAttribute("id", theme.id);
-    var textNode = document.createTextNode(theme.name);
+
+    let textNode = document.createTextNode(theme.name);
     themeChoice.appendChild(textNode);
 
     // Cannot access theme icons at present. Uncomment when the management API 
