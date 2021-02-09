@@ -1,0 +1,13 @@
+about:devtools-toolbox?type=extension&id=drsjb80%40gmail.com
+
+check addOns.length add dynamic building of menu via
+browser.browserAction.onClicked.addListener
+via rebuildMenus
+
+Can no longer
+change navigation bar height
+have TM on main menu
+small preview icons on the menu
+automatic updating on theme addition/removal
+
+hg clone https://hg.mozilla.org/releases/mozilla-beta/ beta
